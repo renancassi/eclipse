@@ -33,11 +33,11 @@ canvas {
 .title h1 {
     text-align: center;
     font-weight: bold;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .card {
     background-color: white;
-    padding: 5px;
+    padding: 10px 15px;
     border: 5px solid black;
 }
