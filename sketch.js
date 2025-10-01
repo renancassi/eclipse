@@ -1,37 +1,54 @@
+let estrelas = []; // guarda posições e brilho
+let quantidade = 300;
+
 function setup() {
-    createCanvas(400, 400);
+    let cnv = createCanvas(400, 400);
+    cnv.parent('c1');
+    pixelDensity(0.6);
     background(0);
-    //noLoop(); // só desenha uma vez
+
+    // gerar estrelas com posição e velocidade de piscar
+    for (let i = 0; i < quantidade; i++) {
+        estrelas.push({
+            x: random(width),
+            y: random(height),
+            brilho: random(0, 255),       // brilho inicial
+            velocidade: random(0.5, 3),   // velocidade de piscar
+            aumentando: random([true, false]) // se está aumentando ou diminuindo
+        });
+    }
 }
 
 function draw() {
-    estrelasBrancas()
-    estrelasPretas()
-    lua()
-}
+    background(0); // limpa o canvas a cada frame
 
-function estrelasBrancas() {
-    // estrelas
-    stroke(255);
-    strokeWeight(random(1, 3));
-    point(random(width), random(height));
-}
+    // desenha estrelas
+    for (let i = 0; i < estrelas.length; i++) {
+        let e = estrelas[i];
 
-function estrelasPretas() {
-    // estrelas
-    stroke(0);
-    strokeWeight(random(1, 3));
-    point(random(width), random(height));
+        stroke(e.brilho);
+        strokeWeight(random(1, 3));
+        point(e.x, e.y);
+
+        // atualiza brilho para piscar
+        if (e.aumentando) {
+            e.brilho += e.velocidade;
+            if (e.brilho >= 255) e.aumentando = false;
+        } else {
+            e.brilho -= e.velocidade;
+            if (e.brilho <= 0) e.aumentando = true;
+        }
+    }
+
+    lua();
 }
 
 function lua() {
-    // lua cheia
-    fill(255, 255, 200); // cor da lua
+    fill(255, 255, 200);
     noStroke();
     circle(width / 2, height / 2, 100);
 
-    // sombra para criar lua crescente
-    fill(0); // mesma cor do fundo
-    circle(width / 2 + 20, height / 2, 100);
-
+    // sombra para criar efeito de lua crescente
+    fill(0);
+    circle(width / 2, height / 2, 95);
 }
