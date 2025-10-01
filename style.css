@@ -7,6 +7,7 @@
 
 .container {
     width: 100vw;
+    background-color: black;
 }
 
 .center {
@@ -36,6 +37,7 @@ canvas {
 }
 
 .card {
+    background-color: white;
     padding: 5px;
     border: 5px solid black;
 }
