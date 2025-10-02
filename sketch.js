@@ -48,7 +48,7 @@ function lua() {
     noStroke();
     circle(width / 2, height / 2, 100);
 
-    // sombra para criar efeito de lua crescente
+    // sombra para criar efeito de eclipse
     fill(0);
     circle(width / 2, height / 2, 95);
 }
